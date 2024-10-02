@@ -1,0 +1,51 @@
+/*2. Să se scrie un program care citește un set de numerele din fișierul de intrare in.txt, care
+conține câte un număr pe un rând, având valorile din figura 18. Programul va determină suma
+lor, media aritmetică, valoarea minimă, valoarea maximă, va afișa aceste valori pe ecran și le
+va scrie în fișierul de ieșire out.txt. Media aritmetică va fi afișată ca un număr real. */
+
+package P2L1;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class p2l1
+{
+    public static void main(String[] args) throws IOException {
+        String inputFile="C:\\Users\\Ionela\\Desktop\\Semestrul 1\\PJ\\Problema 2\\src\\P2L1\\in.txt";
+        BufferedReader flux_in = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile)));
+        String line;
+        int sum = 0;
+        int counter = 0;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+
+        while ((line = flux_in.readLine()) != null)
+        {
+            System.out.println(line);
+            int num = Integer.parseInt(line);
+            sum += num;
+            counter++;
+
+            if(num < min) min = num;
+            if(num > max) max = num;
+        }
+        flux_in.close();
+
+        double avg = (double) sum / counter;
+
+        System.out.println("The sum of all numbers is: " + sum);
+        System.out.println("The average number is: " + avg);
+        System.out.println("The minimum number is: " + min);
+        System.out.println("The maximum number is: " + max);
+
+        String outputFile="C:\\Users\\Ionela\\Desktop\\Semestrul 1\\PJ\\Problema 2\\src\\P2L1\\out.txt";
+        BufferedWriter flux_out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile)));
+        flux_out.write("The sum of all numbers is: " + sum + "\n");
+        flux_out.write("The average number is: " + avg + "\n");
+        flux_out.write("The minimum number is: " + min + "\n");
+        flux_out.write("The maximum number is: " + max + "\n");
+
+        flux_out.close();
+    }
+}
