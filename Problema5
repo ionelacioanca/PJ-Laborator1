@@ -1,0 +1,45 @@
+
+/*5. Să se scrie un program care generează aleatoriu un număr întreg cuprins între 0 și 20.
+Programul va determina dacă numărul aparține șirului lui Fobonacci. */
+
+package P5L1;
+
+import java.util.Random;
+
+public class p5l1
+{
+    public static void main(String[] args) {
+        Random rand = new Random();
+        int f = rand.nextInt(20) + 1;
+
+        System.out.println("The random number is " + f);
+
+        boolean fibonacci = functiaFibonacci(f);
+        System.out.println("The fibonacci number is " + fibonacci);
+    }
+
+    public static boolean functiaFibonacci(int n)
+    {
+        if(n==0 || n==1)
+        {
+            return true;
+        }
+
+        int f0=0;
+        int f1=1;
+        int fn = f0+f1;
+
+        while(fn<=n)
+        {
+            if(fn==n)
+            {
+                return true;
+            }
+
+            f0=f1;
+            f1=fn;
+            fn=f0+f1;
+        }
+        return false;
+    }
+}
